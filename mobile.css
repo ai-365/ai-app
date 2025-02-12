@@ -1,0 +1,26 @@
+.user-input{
+  width:76vw;
+  bottom:48px;
+  left:2vw;
+}
+
+.user-input-init{
+  bottom:50vh;
+}
+
+#send-button {
+  position: fixed;
+  bottom: 48px;
+  left: calc(76vw + 2vw);
+}
+
+.send-button-init{
+  bottom:50vh !important;
+}
+
+
+.primary{
+  margin-bottom: 200px;
+  width:91vw;
+  left:2.5vw;
+}
