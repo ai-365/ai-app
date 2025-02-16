@@ -1,0 +1,147 @@
+body {
+  font-size: 18px;
+  /*桌面修改*/
+}
+
+
+
+
+
+
+.user-input {
+  position: fixed;
+  width: 50vw;
+  height: 3rem;
+  bottom: 5vh;
+  resize: none;
+  overflow: hidden;
+  left: 22vw;
+  padding: 12px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  anchor-name: --anchor-el;
+}
+
+/* 第一次进入页面时输入框居中 */
+/* 而后使用#user-input样式 */
+.user-input-init {
+  bottom: 50vh;
+}
+
+/* 发送按钮 */
+#send-button {
+  font-size: 1rem;
+  height: 3rem;
+  position: fixed;
+  border-radius: 8px;
+  border: none;
+  position: fixed;
+  background: #07c160;
+  padding:10px;
+  color: white;
+  position-anchor: --anchor-el;
+  bottom: anchor(bottom);
+  left: anchor(right);
+  margin-left: 4px;
+  z-index: 5;
+
+  & svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+
+
+/* 主要问答区 */
+.primary {
+  position: relative;
+  width: 70vw;
+  left: 10vw;
+  top: 10vw;
+  margin-bottom: 300px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden visible;
+}
+
+
+
+/* 每一个问题 */
+.question {
+  width: 80%;
+  height: auto;
+  margin-bottom: 50px;
+  font-size: 1rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  position:relative;
+  left:50px;
+}
+
+/* 问题头像questionAvatar */
+.question-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(58, 205, 131);
+  flex-shrink: 0;
+  margin-left: 10px;
+
+  /* 配置头像图片 */
+  background-image: url(https://img0.baidu.com/it/u=3837464795,952037884&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* 每一个问题的内容 */
+.answer-content {
+  padding: 20px;
+  border-radius: 20px;
+  background: #eff6ff;
+}
+
+.question-content {
+  padding: 20px;
+  border-radius: 20px;
+  background: #eff6ff;
+}
+
+/*  每一个答案 */
+.answer {
+  width:80%;
+  font-size: 1rem;
+  flex-shrink: 0;
+  position: relative;
+  margin-bottom: 50px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+/* 答案头像 */
+.answer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: antiquewhite;
+  flex-shrink: 0;
+  margin-right: 10px;
+
+
+  /* 配置头像图片 */
+  background-image: url(https://img0.baidu.com/it/u=4024631678,647033835&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
