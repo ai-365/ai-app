@@ -1,10 +1,9 @@
-const primaryArea = document.querySelector('.primary')
+const primaryArea = document.querySelector('#primary')
 // 输入组件：包括输入框、按钮、图片上传、图片预览
 const inputComponent = document.querySelector('input-component')
 // 用户输入框
-const userInput = inputComponent.shadowRoot.querySelector('.user-input')
-// 测试阶段预内容：图中描绘的是什么景象？
-userInput.value = '图中描绘的是什么景象？'
+const userInput = inputComponent.shadowRoot.querySelector('#user-input')
+
 // 发送按钮节点
 const sendButton = inputComponent.shadowRoot.querySelector('#send-button')
 
@@ -33,23 +32,19 @@ sendButton.onclick = async function () {
   // 移除输入框和发送按钮的初识样式，回到页面底部
   inputComponent.style.bottom = '5vh'
 
-  // 清空输入内容
-  // 1、创建问题框，并append到主要问答区
-  // question = questionAvatar（提问者头像） + questionContent（提问内容：重点）
-  const question = document.createElement('div')
-  const questionAvatar = document.createElement('div')
-  const questionContent = document.createElement('div')
-  question.className = 'question'
-  questionAvatar.className = 'question-avatar'
-  questionContent.className = 'question-content'
-  primaryArea.append(question)
-  question.append(questionAvatar)
-  question.append(questionContent)
+  // 滚动到页面底部
+  window.scrollBy(0, document.body.scrollHeight);
 
+  // 创建问题组件
+  const questionComponent = document.createElement('question-component')
+  questionComponent.style.width = '100%'
+  const questionImage = questionComponent.shadowRoot.querySelector('#question-image')
+  questionImage.src = window.base64
+  const questionText = questionComponent.shadowRoot.querySelector('#question-text')
+  questionText.textContent = userInput.value==''?'图中描绘了什么景象':userInput.value
+  primaryArea.append(questionComponent)
 
-  // 2、将输入框的内容复制到问题库
-  questionContent.textContent = userInput.value
-
+  // 创建答案组件
   const answerComponent = document.createElement('answer-component')
   answerComponent.style.width = '100%'
   const answerText = answerComponent.shadowRoot.querySelector('#answer-text')
@@ -57,7 +52,7 @@ sendButton.onclick = async function () {
 
 
   // 获取fetchLLM()函数，从云服务中调用大模型
-  const { fetchLLM } = await import('./fetch-llm-picture-input.js')
+  const { fetchLLM } = await import('./fetch-llm-audio-output.js')
   fetchLLM(userInput, answerText)
 
 }
