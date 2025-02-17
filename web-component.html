@@ -1,0 +1,73 @@
+<template id="answer-component">
+    <style>
+       
+        /*  每一个答案 */
+        #answer {
+            width: 80%;
+            font-size: 1rem;
+            flex-shrink: 0;
+            position: relative;
+            margin-bottom: 50px;
+
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+        }
+
+        /* 答案头像 */
+        #answer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: antiquewhite;
+            flex-shrink: 0;
+            margin-right: 10px;
+            /* 配置头像图片 */
+            background-image: url(https://img0.baidu.com/it/u=4024631678,647033835&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        #answer-text {
+            padding: 20px;
+            border-radius: 20px;
+            background: #eff6ff;
+
+        }
+    </style>
+
+    <div id="answer">
+        <div id="answer-avatar"></div>
+        <div id="answer-content">
+            <div id="answer-text">这是答案这是答案
+                这是答案这是答案这是答案这是答案这是答案这是答案
+                这是答案这是答案这是答案这是答案这是答案这是答案
+                这是答案这是答案这是答案这是答案这是答案这是答案这是答案这是答案
+                这是答案这是答案这是答案这是答案这是答案这是答案这是答案这是答案
+                这是答案这是答案这是答案这是答案这是答案这是答案这是答案这是答案这是答案这是答案
+            </div>
+            <div id="answer-audio"></div>
+        </div>
+    </div>
+</template>
+
+
+
+<script type="module">
+    customElements.define('answer-component',
+        class extends HTMLElement {
+            constructor() {
+                super();
+                const template = document
+                    .getElementById('answer-component')
+                    .content;
+                const shadowRoot = this.attachShadow({ mode: 'open' })
+                    .appendChild(template.cloneNode(true));
+            }
+        });
+
+
+        document.body.append(document.createElement('answer-component'))
+</script>

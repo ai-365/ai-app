@@ -3,108 +3,253 @@
 <link rel="stylesheet" href="./mobile.css" media="(max-width:800px)" />
 
 
-<body>
-  <!-- 
+
+<template id="answer-component">
+  <style>
+    /*  每一个答案 */
+    #answer {
+      width: 100%;
+      font-size: 1rem;
+      flex-shrink: 0;
+      position: relative;
+      margin-bottom: 50px;
+
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+    }
+
+    /* 答案头像 */
+    #answer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: antiquewhite;
+      flex-shrink: 0;
+      margin-right: 10px;
+      /* 配置头像图片 */
+      background-image: url(https://img0.baidu.com/it/u=4024631678,647033835&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #answer-text {
+      padding: 20px;
+      border-radius: 20px;
+      background: #eff6ff;
+
+    }
+  </style>
+
+  <div id="answer">
+    <div id="answer-avatar"></div>
+    <div id="answer-content">
+      <div id="answer-text">
+      </div>
+      <div id="answer-audio"></div>
+    </div>
+  </div>
+
+</template>
+
+<style>
+  input-component{
+      position: fixed;
+      width: 70vw;
+      left:15vw;
+      bottom: 50vh;
+      
+  }
+</style>
+
+<template id="input-component">
+  <style>
+    .user-input {
+      width:80%;
+      height: 3rem;
+      resize: none;
+      overflow: hidden;
+      left: 22vw;
+      padding: 12px;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #f3f4f6;
+      anchor-name: --text-area;
+    }
+
+    
+
+    /* 发送按钮 */
+    #send-button {
+      font-size: 1rem;
+      height: 3rem;
+      position: fixed;
+      border-radius: 8px;
+      border: none;
+      position: fixed;
+      background: #07c160;
+      padding: 10px;
+      color: white;
+      position-anchor: --text-area;
+      bottom: anchor(bottom);
+      left: anchor(right);
+      margin-left: 4px;
+      z-index: 5;
+
+      & svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    /*图片输入*/
+    #imageInput {
+      position: absolute;
+      position-anchor: --text-area;
+      bottom: anchor(top);
+      left: anchor(left);
+    }
+
+    /*图片预览*/
+    #imagePreview {
+      display: none;
+      max-width: 30px;
+      max-height: 30px;
+
+      position: absolute;
+      position-anchor: --text-area;
+      bottom: anchor(top);
+      justify-self: anchor-center;
+
+    }
+  </style>
+
+
+    <textarea name="user-input" class="user-input" placeholder="问点什么吧"></textarea>
+
+    <button id="send-button">AI一下</button>
+
+    <!-- 图片输入 -->
+    <input type="file" id="imageInput" accept="image/*">
+
+    <!-- 显示图片预览 -->
+    <img id="imagePreview" alt="Image Preview">
+
+
+
+
+</template>
+
+<template id="question-component">
+
+  <style>
+    /* 每一个问题 */
+    #question {
+      width: 80%;
+      height: auto;
+      margin-bottom: 50px;
+      font-size: 1rem;
+      flex-shrink: 0;
+      display: flex;
+      flex-flow: row-reverse;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      position: relative;
+      left: 50px;
+    }
+
+    /* 问题头像questionAvatar */
+    #question-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgb(58, 205, 131);
+      flex-shrink: 0;
+      margin-left: 10px;
+
+      /* 配置头像图片 */
+      background-image: url(https://img0.baidu.com/it/u=3837464795,952037884&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+
+
+    #question-content {
+      padding: 20px;
+      border-radius: 20px;
+      background: #eff6ff;
+    }
+  </style>
+
+  <div id="question">
+    <div id="question-avatar"></div>
+    <div id="question-content">
+      <div id="question-image"></div>
+      <div id="question-text"></div>
+    </div>
+  </div>
+
+
+</template>
+
+<!-- 
   primary 主要区，包含了问题和答案
   每个问题和答案都包括头像和内容
   问题和答案都是动态append的
   点击“发送”一次，就append一次
  -->
-  <div class="primary"></div>
-
-  <textarea name="user-input" class="user-input" placeholder="问点什么吧"></textarea>
-
-  <button id="send-button">AI一下</button>
-
-  <!-- 图片输入 -->
-  <input type="file" id="imageInput" accept="image/*">
-
-  <!-- 显示图片预览 -->
-  <img id="imagePreview" alt="Image Preview" style="display: none; max-width: 300px; max-height: 300px;">
-
-  <script src="./image-preview-and-base64.js"></script>
-
-  <script type="module">
-
-    const primaryArea = document.querySelector('.primary')
-    // 用户输入框节点
-    const userInput = document.querySelector('.user-input')
-    // 测试阶段预内容：图中描绘的是什么景象？
-    userInput.value = '图中描绘的是什么景象？'
-    // 发送按钮节点
-    const sendButton = document.querySelector('#send-button')
-
-    // 页面加载后自动聚焦到输入框：
-    window.onload = () => {
-      userInput.focus()
-      userInput.classList.add('user-input-init')
-      sendButton.classList.add('send-button-init')
-    }
+<div class="primary"></div>
 
 
-    // 激活输入框期间，监听Enter键
-    userInput.onkeyup = event => {
-      // 检测到Enter键且没按其它控制键，就模拟点击sendButton
-      if (event.key == 'Enter' && !event.ctrlKey && !event.shiftKey && !event.metaKey && userInput.value !== '') {
-        sendButton.click()
-        // 高度复原： 
-        userInput.style.height = '3rem'
+
+
+<!-- 定义各种组件 -->
+<script type="module">
+  customElements.define('answer-component',
+    class extends HTMLElement {
+      constructor() {
+        super();
+        const template = document
+          .getElementById('answer-component')
+          .content;
+        const shadowRoot = this.attachShadow({ mode: 'open' })
+          .appendChild(template.cloneNode(true));
       }
-    }
-    // 输入框输入时自动调整高度
-    userInput.oninput = () => {
-      userInput.style.height = userInput.scrollHeight + 'px';
-    }
+    })
 
-    sendButton.onclick = async function () {
+  customElements.define('input-component',
+    class extends HTMLElement {
+      constructor() {
+        super();
+        const template = document
+          .getElementById('input-component')
+          .content;
+        const shadowRoot = this.attachShadow({ mode: 'open' })
+          .appendChild(template.cloneNode(true));
+      }
+    })
 
-      // 移除输入框和发送按钮的初识样式，回到页面底部
-      userInput.classList.remove('user-input-init')
-      sendButton.classList.remove('send-button-init')
+  customElements.define('question-component',
+    class extends HTMLElement {
+      constructor() {
+        super();
+        const template = document
+          .getElementById('question-component')
+          .content;
+        const shadowRoot = this.attachShadow({ mode: 'open' })
+          .appendChild(template.cloneNode(true));
+      }
+    })
 
-      // 清空输入内容
-      // 1、创建问题框，并append到主要问答区
-      // question = questionAvatar（提问者头像） + questionContent（提问内容：重点）
-      const question = document.createElement('div')
-      const questionAvatar = document.createElement('div')
-      const questionContent = document.createElement('div')
-      question.className = 'question'
-      questionAvatar.className = 'question-avatar'
-      questionContent.className = 'question-content'
-      primaryArea.append(question)
-      question.append(questionAvatar)
-      question.append(questionContent)
+</script>
 
+<input-component></input-component>
 
-      // 2、将输入框的内容复制到问题库
-      questionContent.textContent = userInput.value
-
-      // 3、创建答案框，并append到主要问答区
-      // answer = answer-avatar（回答头像） + answer-content（回答内容：重要节点）
-      const answer = document.createElement('div')
-      const answerAvatar = document.createElement('div')
-      // 答案：包括Content = Text + Image
-      const answerContent = document.createElement('div')
-      const answerImage = document.createElement('img')
-      const answerText = document.createElement('div')
-      answerImage.src = window.base64
-      answerImage.style.maxWidth='300px'
-      answerImage.style.maxHeight='300px'
-      answer.className = 'answer'
-      answerAvatar.className = 'answer-avatar'
-      answerContent.className = 'answer-content'
-      primaryArea.append(answer)
-      answer.append(answerAvatar)
-      answer.append(answerContent)
-      answerContent.append(answerImage)
-      answerContent.append(answerText)
-
-      // 获取fetchLLM()函数，从云服务中调用大模型
-      const { fetchLLM } = await import('./fetch-llm-picture-input.js')
-      fetchLLM(userInput, answerText)
-
-    }
-
-  </script>
-
-</body>
+<script type="module" src="./user-input.js" defer></script>
+<script type="module" src="./image-preview-and-base64.js" defer></script>

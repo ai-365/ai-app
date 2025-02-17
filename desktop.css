@@ -104,11 +104,11 @@ body {
 }
 
 /* 每一个问题的内容 */
-.answer-content {
+/* .answer-content {
   padding: 20px;
   border-radius: 20px;
   background: #eff6ff;
-}
+} */
 
 .question-content {
   padding: 20px;
@@ -116,32 +116,3 @@ body {
   background: #eff6ff;
 }
 
-/*  每一个答案 */
-.answer {
-  width:80%;
-  font-size: 1rem;
-  flex-shrink: 0;
-  position: relative;
-  margin-bottom: 50px;
-
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-/* 答案头像 */
-.answer-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: antiquewhite;
-  flex-shrink: 0;
-  margin-right: 10px;
-
-
-  /* 配置头像图片 */
-  background-image: url(https://img0.baidu.com/it/u=4024631678,647033835&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=800);
-  background-size: contain;
-  background-repeat: no-repeat;
-}
