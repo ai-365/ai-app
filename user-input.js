@@ -52,7 +52,7 @@ sendButton.onclick = async function () {
 
 
   // 获取fetchLLM()函数，从云服务中调用大模型
-  const { fetchLLM } = await import('./fetch-llm-audio-output.js')
+  const { fetchLLM } = await import('./fetch-llm-picture-input.js')
   fetchLLM(userInput, answerText)
 
 }
