@@ -37,22 +37,20 @@ sendButton.onclick = async function () {
 
   // 创建问题组件
   const questionComponent = document.createElement('question-component')
-  questionComponent.style.width = '100%'
-  const questionImage = questionComponent.shadowRoot.querySelector('#question-image')
-  questionImage.src = window.base64
   const questionText = questionComponent.shadowRoot.querySelector('#question-text')
-  questionText.textContent = userInput.value==''?'图中描绘了什么景象':userInput.value
+  questionText.textContent = userInput.value==''?'你是谁？':userInput.value
   primaryArea.append(questionComponent)
 
   // 创建答案组件
   const answerComponent = document.createElement('answer-component')
-  answerComponent.style.width = '100%'
+  // answerComponent.style.width = '100%'
   const answerText = answerComponent.shadowRoot.querySelector('#answer-text')
   primaryArea.append(answerComponent)
 
 
-  // 获取fetchLLM()函数，从云服务中调用大模型
-  const { fetchLLM } = await import('./fetch-llm-picture-input.js')
-  fetchLLM(userInput, answerText)
 
+  // 获取fetchLLM()函数，从云服务中调用大模型
+  const { fetchLLM } = await import('./fetch-llm.js')
+  fetchLLM(userInput, answerText)
+  userInput.value = ''
 }

@@ -1,5 +1,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./desktop.css" />
+<link rel="stylesheet" href="./mobile.css" media="(max-width:800px)" />
+
+<template id="input-component">
+  <style>
+    #user-input {
+      width: 80%;
+      height: 3rem;
+      resize: none;
+      overflow: hidden;
+      left: 22vw;
+      padding: 12px;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #f3f4f6;
+      anchor-name: --text-area;
+    }
+
+    /* 发送按钮 */
+    #send-button {
+      min-width: 80px;
+      padding:10px;
+      font-size: 1rem;
+      height: 3rem;
+      border-radius: 8px;
+      border: none;
+      background: #07c160;
+      color: white;
+      position: absolute;
+      position-anchor: --text-area;
+      left: anchor(right);
+      align-self: anchor-center;
+      margin-left: 4px;
+    }
+
+    @media (max-width:800px) {
+      #imageInput{
+        position: fixed;
+        bottom:50px;
+        left:20px;
+        display:inline-block;
+        width:100px;
+      }
+     
+    }
+
+
+   
+  </style>
+
+
+  <textarea name="user-input" id="user-input" placeholder="问点什么吧"></textarea>
+
+  <button id="send-button">AI一下</button>
+
+
+
+
+
+</template>
 
 <template id="answer-component">
   <style>
@@ -32,98 +93,10 @@
   <div id="answer-avatar"></div>
   <div id="answer-content">
     <div id="answer-text"></div>
-    <div id="answer-audio"></div>
   </div>
 
 </template>
 
-
-
-<template id="input-component">
-  <style>
-    #user-input {
-      width: 80%;
-      height: 3rem;
-      resize: none;
-      overflow: hidden;
-      left: 22vw;
-      padding: 12px;
-      font-size: 1rem;
-      line-height: 1.5rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #f3f4f6;
-      anchor-name: --text-area;
-    }
-
-
-
-    /* 发送按钮 */
-    #send-button {
-      font-size: 1rem;
-      height: 3rem;
-      border-radius: 8px;
-      border: none;
-      background: #07c160;
-      padding: 10px;
-      color: white;
-      position: absolute;
-      position-anchor: --text-area;
-      left: anchor(right);
-      align-self: anchor-center;
-      margin-left: 4px;
-    }
-
-    @media (max-width:800px) {
-      #imageInput{
-        position: fixed;
-        bottom:50px;
-        left:20px;
-        display:inline-block;
-        width:100px;
-      }
-
-    }
-
-    /*图片输入*/
-    #imageInput {
-      position: absolute;
-      position-anchor: --text-area;
-      bottom: anchor(top);
-      left: anchor(left);
-      anchor-name: --image-input;
-    }
-
-    /*图片预览*/
-    #imagePreview {
-      display: none;
-      border-radius: 5px;
-      max-width: 100px;
-      max-height: 100px;
-
-      position: absolute;
-      position-anchor: --image-input;
-      bottom: anchor(bottom);
-      left: anchor(right);
-
-    }
-  </style>
-
-
-  <textarea name="user-input" id="user-input" placeholder="问点什么吧"></textarea>
-
-  <button id="send-button">AI一下</button>
-
-  <!-- 图片输入 -->
-  <input type="file" id="imageInput" accept="image/*" value="上传图片">
-
-  <!-- 显示图片预览 -->
-  <img id="imagePreview" alt="Image Preview">
-
-
-
-
-</template>
 
 <template id="question-component">
 
@@ -152,17 +125,12 @@
       gap: 10px;
     }
 
-    #question-image {
-      max-width: 300px;
-      max-height: 300px;
-      border-radius: 5px;
-    }
+  
   </style>
 
   <div id="question-avatar"></div>
   <div id="question-content">
     <div id="question-text"></div>
-    <img id="question-image" />
   </div>
 
 
@@ -172,12 +140,10 @@
 <div id="primary"></div>
 
 
-
-
 <!-- 定义各种组件 -->
-<script type="module" src="defineComponent.js"></script>
+<script  type="module" src="./define-component.js"></script>
 
 <input-component></input-component>
 
-<script type="module" src="./user-input.js" defer></script>
-<script type="module" src="./image-preview-and-base64.js" defer></script>
+<script type="module" src="./handle-input.js" defer></script>
+

@@ -1,5 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./desktop.css" />
+<link rel="stylesheet" href="./mobile.css" media="(max-width:800px)" />
 
 <template id="answer-component">
   <style>
@@ -38,7 +39,6 @@
 </template>
 
 
-
 <template id="input-component">
   <style>
     #user-input {
@@ -60,6 +60,7 @@
 
     /* 发送按钮 */
     #send-button {
+      min-width: 80px;
       font-size: 1rem;
       height: 3rem;
       border-radius: 8px;
@@ -74,16 +75,7 @@
       margin-left: 4px;
     }
 
-    @media (max-width:800px) {
-      #imageInput{
-        position: fixed;
-        bottom:50px;
-        left:20px;
-        display:inline-block;
-        width:100px;
-      }
-
-    }
+    
 
     /*图片输入*/
     #imageInput {
@@ -105,6 +97,24 @@
       position-anchor: --image-input;
       bottom: anchor(bottom);
       left: anchor(right);
+
+    }
+
+    @media (max-width:800px) {
+      #imageInput{
+        display: block;
+        position: relative;
+        width:200px;
+        left:20px;
+        bottom:80px;
+        display:inline-block;
+        width:100px;
+      }
+      #imagePreview{
+        position: absolute;
+        left:100px;
+        top:-100px;
+      }
 
     }
   </style>
@@ -157,6 +167,12 @@
       max-height: 300px;
       border-radius: 5px;
     }
+    @media (max-width:800px) {
+      #question-content{
+        width:75%;
+      }
+     
+    }
   </style>
 
   <div id="question-avatar"></div>
@@ -172,17 +188,13 @@
 <div id="primary"></div>
 
 
-<audio id="audioPlayer" controls style="position:fixed;left:10vw;bottom:10vw;z-index:50">
-
-</audio>
-
-
 
 
 <!-- 定义各种组件 -->
-<script type="module" src="defineComponent.js"></script>
+<script  type="module" src="./define-component.js"></script>
 
 <input-component></input-component>
 
-<script type="module" src="./user-input.js" defer></script>
-<script type="module" src="./image-preview-and-base64.js" defer></script>
+<script type="module" src="./handle-input.js" defer></script>
+
+<script type="module" src="./image2Base64.js" defer></script>

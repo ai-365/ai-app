@@ -1,0 +1,19 @@
+
+input-component{
+    width:90vw;
+    left:15px;
+  }
+
+#primary{
+    left:10px;
+    width:90vw;
+}
+
+question-component{
+    width:100%;
+}
+
+answer-component{
+    width:100%;
+}
+

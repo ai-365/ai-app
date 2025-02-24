@@ -1,3 +1,4 @@
+
 customElements.define('answer-component',
     class extends HTMLElement {
       constructor() {
@@ -7,6 +8,7 @@ customElements.define('answer-component',
           .content;
         const shadowRoot = this.attachShadow({ mode: 'open' })
           .appendChild(template.cloneNode(true));
+          
       }
     })
 

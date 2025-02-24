@@ -1,0 +1,45 @@
+body {
+  font-size: 18px;
+  /*桌面修改*/
+}
+
+/* 主要问答区 */
+#primary {
+  position: relative;
+  width: 70vw;
+  left: 10vw;
+  top: 10vw;
+  margin-bottom: 300px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden visible;
+}
+
+input-component {
+  position: fixed;
+  width: 70vw;
+  left: 15vw;
+  bottom: 50vh;
+
+}
+
+question-component {
+  width:90%;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+answer-component {
+  width: 90%;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+
+
+
+
+

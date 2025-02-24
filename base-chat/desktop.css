@@ -26,29 +26,20 @@ input-component {
 }
 
 question-component {
+  width:90%;
   margin-bottom: 50px;
   display: flex;
   flex-direction: row-reverse;
 }
 
 answer-component {
-  width: 100%;
+  width: 90%;
   margin-bottom: 50px;
   display: flex;
 }
 
-/* 多端适配  */
-
-@media (max-width:800px) {
-  body{
-    /* background: red; */
-  }
-
-  input-component{
-    width:85vw;
-    left:10px;
-  }
 
 
-  
-}
+
+
+
