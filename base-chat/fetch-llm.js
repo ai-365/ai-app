@@ -45,7 +45,7 @@ async function fetchLLM(inputNode, answerNode) {
         let result = utf8Decoder.decode(value)
 
         // 处理文本
-        let content = result.match(/{"content":"(.*?)"}/g)
+        let content = result.match(/{"content?":"(.*?)"}/g)
         // 使用可选连?.避免null或undefined报错
         content?.forEach(x => {
             answerNode.innerText += JSON.parse(x).content

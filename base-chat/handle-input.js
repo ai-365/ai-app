@@ -29,11 +29,21 @@ userInput.oninput = () => {
 
 sendButton.onclick = async function () {
 
+  // 移除指导
+  const guide = document.querySelector('#guide')
+  if(guide)guide.remove()
+  // 移除标题
+  const title = document.querySelector('input-component').shadowRoot.querySelector('#title')
+  if(title)title.remove()
+
   // 移除输入框和发送按钮的初识样式，回到页面底部
   inputComponent.style.bottom = '5vh'
 
   // 滚动到页面底部
   window.scrollBy(0, document.body.scrollHeight);
+
+  // 输入框高度还原
+  userInput.style.height = '3rem'
 
   // 创建问题组件
   const questionComponent = document.createElement('question-component')
@@ -43,7 +53,6 @@ sendButton.onclick = async function () {
 
   // 创建答案组件
   const answerComponent = document.createElement('answer-component')
-  // answerComponent.style.width = '100%'
   const answerText = answerComponent.shadowRoot.querySelector('#answer-text')
   primaryArea.append(answerComponent)
 

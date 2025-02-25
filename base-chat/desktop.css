@@ -41,5 +41,15 @@ answer-component {
 
 
 
-
+/* guide */
+#guide{
+  background: beige;
+  padding:10px;
+  border-radius: 10px;
+  font-size:0.8rem;
+  position: fixed;
+  width: 55vw;
+  left: 15vw;
+  top: 52vh;
+}
 

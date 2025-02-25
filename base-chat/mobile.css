@@ -1,19 +1,25 @@
-
-input-component{
-    width:90vw;
-    left:15px;
-  }
-
-#primary{
-    left:10px;
-    width:90vw;
+input-component {
+    width: 90vw;
+    left: 15px;
 }
 
-question-component{
-    width:100%;
+#primary {
+    left: 10px;
+    width: 90vw;
 }
 
-answer-component{
-    width:100%;
+question-component {
+    width: 100%;
 }
 
+answer-component {
+    width: 100%;
+}
+
+
+/* guide */
+#guide {
+    position: fixed;
+    width: 85vw;
+    left: 5vw;
+}
