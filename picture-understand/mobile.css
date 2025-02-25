@@ -17,3 +17,9 @@ answer-component{
     width:100%;
 }
 
+/* guide */
+#guide {
+    position: fixed;
+    width: 85vw;
+    left: 5vw;
+}

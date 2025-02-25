@@ -75,7 +75,7 @@
       margin-left: 4px;
     }
 
-    
+
 
     /*图片输入*/
     #imageInput {
@@ -97,28 +97,43 @@
       position-anchor: --image-input;
       bottom: anchor(bottom);
       left: anchor(right);
+    }
 
+    #title {
+      position: absolute;
+      left: 30%;
+      bottom: 180%;
+      font-size: 3rem;
+      font-weight: bolder;
+      color:red;
     }
 
     @media (max-width:800px) {
-      #imageInput{
+      #imageInput {
         display: block;
         position: relative;
-        width:200px;
-        left:20px;
-        bottom:80px;
-        display:inline-block;
-        width:100px;
+        width: 200px;
+        left: 20px;
+        bottom: 80px;
+        display: inline-block;
+        width: 100px;
       }
-      #imagePreview{
+
+      #imagePreview {
         position: absolute;
-        left:100px;
-        top:-100px;
+        left: 100px;
+        top: -100px;
+      }
+
+      #title{
+        left: 8%;
+        font-size: 3rem;
       }
 
     }
   </style>
 
+  <div id="title">识图🦉一下</div>
 
   <textarea name="user-input" id="user-input" placeholder="问点什么吧"></textarea>
 
@@ -167,11 +182,12 @@
       max-height: 300px;
       border-radius: 5px;
     }
+
     @media (max-width:800px) {
-      #question-content{
-        width:75%;
+      #question-content {
+        width: 75%;
       }
-     
+
     }
   </style>
 
@@ -188,10 +204,16 @@
 <div id="primary"></div>
 
 
-
+<div id="guide">
+  你可以尝试这样提问：<br><br>
+  这张图片描述了什么景象？<br><br>
+  这张图片中的小狗在图片的哪个位置？是什么颜色的？<br><br>
+  提取出这张图片中的文字，只输出结果<br><br>
+  更多应用，待你探索...... <br><br>
+</div>
 
 <!-- 定义各种组件 -->
-<script  type="module" src="./define-component.js"></script>
+<script type="module" src="./define-component.js"></script>
 
 <input-component></input-component>
 
